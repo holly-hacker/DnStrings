@@ -1,0 +1,5 @@
+root = true
+
+[{*.cs,*.csproj}]
+insert_final_newline = true
+indent_style = tab
