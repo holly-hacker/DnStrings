@@ -1,0 +1,42 @@
+[
+  {
+    "pname": "AsmResolver",
+    "version": "6.0.0-beta.2",
+    "hash": "sha256-vJ44zoTsuNnG6PFQ6L1r+UwyO+4KApH1hqJs0yng4m0="
+  },
+  {
+    "pname": "AsmResolver.DotNet",
+    "version": "6.0.0-beta.2",
+    "hash": "sha256-gOewLxkzfgDzqO9BfqmRPL+unaF6l3uWLcoxF8/ISxg="
+  },
+  {
+    "pname": "AsmResolver.PE",
+    "version": "6.0.0-beta.2",
+    "hash": "sha256-nNXjcZSlKanrG/Cz6QG0spmAy/pbXwgKvRSPLgc4Rrg="
+  },
+  {
+    "pname": "AsmResolver.PE.File",
+    "version": "6.0.0-beta.2",
+    "hash": "sha256-cjx05wkSEJk3jLN3KSDpIlyk6BmqsGixIDUpHqKCAzw="
+  },
+  {
+    "pname": "Microsoft.AspNetCore.App.Ref",
+    "version": "8.0.12",
+    "hash": "sha256-9vCc5s7n5pvBYmews03YT2fc5F+A04y+9xu7cH0G+z0="
+  },
+  {
+    "pname": "Microsoft.NETCore.App.Host.linux-x64",
+    "version": "8.0.12",
+    "hash": "sha256-zwtDPg/f/X905aVWwnipeCljGrZkTKkxrwTVvLu/FQY="
+  },
+  {
+    "pname": "Microsoft.NETCore.App.Ref",
+    "version": "8.0.12",
+    "hash": "sha256-smRZuC/xOZiyZ8WUL/DmRjYFunbtySfS4NSTeqk0Q7c="
+  },
+  {
+    "pname": "System.CommandLine",
+    "version": "2.0.0-beta4.22272.1",
+    "hash": "sha256-zSO+CYnMH8deBHDI9DHhCPj79Ce3GOzHCyH1/TiHxcc="
+  }
+]
