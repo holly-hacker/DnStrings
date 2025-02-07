@@ -5,11 +5,6 @@
     "hash": "sha256-vJ44zoTsuNnG6PFQ6L1r+UwyO+4KApH1hqJs0yng4m0="
   },
   {
-    "pname": "AsmResolver.DotNet",
-    "version": "6.0.0-beta.2",
-    "hash": "sha256-gOewLxkzfgDzqO9BfqmRPL+unaF6l3uWLcoxF8/ISxg="
-  },
-  {
     "pname": "AsmResolver.PE",
     "version": "6.0.0-beta.2",
     "hash": "sha256-nNXjcZSlKanrG/Cz6QG0spmAy/pbXwgKvRSPLgc4Rrg="

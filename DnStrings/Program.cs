@@ -1,5 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using AsmResolver.DotNet;
+using AsmResolver.PE;
 using ConsoleAppFramework;
 using DnStrings;
 using JetBrains.Annotations;
@@ -29,18 +29,25 @@ internal class Commands
 			return;
 		}
 
-		AssemblyDefinition assembly;
+
+		PEImage peImage;
 		try
 		{
-			assembly = AssemblyDefinition.FromFile(file);
+			peImage = PEImage.FromFile(file);
 		}
 		catch (Exception e)
 		{
-			Console.Error.WriteLine($"Cannot read the given input file as a .NET binary: {e.Message}");
+			Console.Error.WriteLine($"Cannot read the given input file as a PE image: {e.Message}");
 			return;
 		}
 
-		var stringFinder = new StringFinder(assembly);
+		if (peImage.DotNetDirectory is null)
+		{
+			Console.Error.WriteLine("PE image is not a .NET binary (no .NET directory)");
+			return;
+		}
+
+		var stringFinder = new StringFinder(peImage.DotNetDirectory);
 		var strings = new StringCollection();
 
 		if (method.HasFlag(SearchFlags.UserStringsHeap))
