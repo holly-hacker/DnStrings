@@ -20,8 +20,13 @@
     "hash": "sha256-cjx05wkSEJk3jLN3KSDpIlyk6BmqsGixIDUpHqKCAzw="
   },
   {
-    "pname": "System.CommandLine",
-    "version": "2.0.0-beta4.22272.1",
-    "hash": "sha256-zSO+CYnMH8deBHDI9DHhCPj79Ce3GOzHCyH1/TiHxcc="
+    "pname": "ConsoleAppFramework",
+    "version": "5.4.0",
+    "hash": "sha256-mk1Lb4LgEu1/172PKlQWm569X3rCh1nyeaKc/g1EYC8="
+  },
+  {
+    "pname": "JetBrains.Annotations",
+    "version": "2024.3.0",
+    "hash": "sha256-BQYhE7JDJ9Bw588KyWzOvQFvQTiRa0K9maVkI9lZgBc="
   }
 ]

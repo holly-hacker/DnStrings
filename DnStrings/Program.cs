@@ -1,46 +1,55 @@
-﻿using System.CommandLine;
+﻿using System.Diagnostics.CodeAnalysis;
 using AsmResolver.DotNet;
+using ConsoleAppFramework;
 using DnStrings;
+using JetBrains.Annotations;
 
-var fileArgument = new Argument<FileInfo>("file", "The file to read");
-var flagsOption = new Option<SearchFlags>("--method", () => SearchFlags.UserStringsHeap,
-	"Which method to find strings by. Multiple methods can be separated by commas.");
-flagsOption.AddAlias("-m");
+var app = ConsoleApp.Create();
+app.Add<Commands>();
+app.Run(args);
 
-var rootCommand = new RootCommand("DnStrings - strings.exe for .NET");
-rootCommand.AddArgument(fileArgument);
-rootCommand.AddOption(flagsOption);
-
-rootCommand.SetHandler((file, flag) =>
+internal class Commands
 {
-	if (!file.Exists)
+	/// <summary> Analyze a .NET binary to look for strings. </summary>
+	/// <param name="file">The file to read</param>
+	/// <param name="method">
+	/// -m, Which method to find strings by. Multiple methods can be separated by commas.
+	/// Possible values: All, UserStringsHeap, StringsHeap.
+	/// </param>
+	[Command("")]
+	[UsedImplicitly]
+	[SuppressMessage("Performance", "CA1822:Mark members as static")]
+	public void DoStuff(
+		[Argument] string file,
+		SearchFlags method = SearchFlags.UserStringsHeap)
 	{
-		Console.Error.WriteLine("File does not exist");
-		return;
+		if (!File.Exists(file))
+		{
+			Console.Error.WriteLine("File does not exist");
+			return;
+		}
+
+		AssemblyDefinition assembly;
+		try
+		{
+			assembly = AssemblyDefinition.FromFile(file);
+		}
+		catch (Exception e)
+		{
+			Console.Error.WriteLine($"Cannot read the given input file as a .NET binary: {e.Message}");
+			return;
+		}
+
+		var stringFinder = new StringFinder(assembly);
+		var strings = new StringCollection();
+
+		if (method.HasFlag(SearchFlags.UserStringsHeap))
+			strings.Add(stringFinder.GetUserStrings());
+
+		if (method.HasFlag(SearchFlags.StringsHeap))
+			strings.Add(stringFinder.GetStrings());
+
+		foreach (var entry in strings.Entries)
+			Console.WriteLine(entry.Value);
 	}
-
-	AssemblyDefinition assembly;
-	try
-	{
-		assembly = AssemblyDefinition.FromFile(file.FullName);
-	}
-	catch (Exception e)
-	{
-		Console.Error.WriteLine($"Cannot read the given input file as a .NET binary: {e.Message}");
-		return;
-	}
-
-	var stringFinder = new StringFinder(assembly);
-	var strings = new StringCollection();
-
-	if (flag.HasFlag(SearchFlags.UserStringsHeap))
-		strings.Add(stringFinder.GetUserStrings());
-
-	if (flag.HasFlag(SearchFlags.StringsHeap))
-		strings.Add(stringFinder.GetStrings());
-
-	foreach (var entry in strings.Entries)
-		Console.WriteLine(entry.Value);
-}, fileArgument, flagsOption);
-
-return rootCommand.Invoke(args);
+}
