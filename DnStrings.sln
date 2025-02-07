@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnStrings", "DnStrings.csproj", "{652A7316-15E3-4329-A3CA-FF85FD81389A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnStrings", "DnStrings/DnStrings.csproj", "{652A7316-15E3-4329-A3CA-FF85FD81389A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
