@@ -1,6 +1,8 @@
 bin/
 obj/
 .idea/
+*.DotSettings.user
+
 
 # Nix
 result
