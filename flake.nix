@@ -18,7 +18,8 @@
 
           dotnet-sdk = pkgs.dotnetCorePackages.sdk_9_0;
           dotnet-runtime = pkgs.dotnetCorePackages.runtime_9_0;
-          # dotnet restore --packages out && nix run nixpkgs#nuget-to-json out > deps.json && rm -r out
+
+          # See JustFile
           nugetDeps = ./deps.json;
         };
 
